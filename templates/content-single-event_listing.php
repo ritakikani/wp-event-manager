@@ -137,7 +137,7 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
             <div class="wpem-event-date-time"><span class="wpem-event-date-time-text"><?php display_event_start_date();?>,<?php display_event_start_time();?> - <?php display_event_end_date();?> <?php display_event_end_time();?></span></div>
                   <div class="clearfix">&nbsp;</div>
 				  <h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
-                  <?php if(get_event_address()){ display_event_address(); echo ',';} ?> <?php display_event_location();?> 
+                  <?php display_event_location();?> 
                   <?php if(get_event_venue_name()){ ?>
                   <div class="clearfix">&nbsp;</div>
 				  <h3 class="wpem-heading-text"><?php _e('Venue','wp-event-manager');?></h3>
