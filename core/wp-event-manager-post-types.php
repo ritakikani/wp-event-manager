@@ -181,7 +181,7 @@ class WP_Event_Manager_Post_Types {
 	       	 	    
 	       	 	    'show_in_rest'          => true,
 	       	 	    
-	       	 	    'rest_base'             => 'job-categories'
+	       	 	    'rest_base'             => 'event-categories'
 
 		        ) )
 
@@ -271,7 +271,7 @@ class WP_Event_Manager_Post_Types {
 		            
 		            'show_in_rest'         => true,
 		            
-		            'rest_base'            => 'job-types'
+		            'rest_base'            => 'event-types'
 		        ) )
 		    );
 	    }
