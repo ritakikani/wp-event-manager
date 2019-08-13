@@ -178,6 +178,10 @@ class WP_Event_Manager_Post_Types {
 		            ),
 
 		            'rewrite' 				=> $rewrite,
+	       	 	    
+	       	 	    'show_in_rest'          => true,
+	       	 	    
+	       	 	    'rest_base'             => 'job-categories'
 
 		        ) )
 
@@ -264,6 +268,10 @@ class WP_Event_Manager_Post_Types {
 		            ),
 
 		           'rewrite' 				=> $rewrite,
+		            
+		            'show_in_rest'         => true,
+		            
+		            'rest_base'            => 'job-types'
 		        ) )
 		    );
 	    }
