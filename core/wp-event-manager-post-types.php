@@ -371,6 +371,14 @@ class WP_Event_Manager_Post_Types {
 				'has_archive' 			=> true,
 
 				'show_in_nav_menus' 	=> true,
+			    
+			    'delete_with_user'      => true,
+			    
+			    'show_in_rest'          => true,
+			    
+			    'rest_base'             => 'event-listings',
+			    
+			    'rest_controller_class' => 'WP_REST_Posts_Controller',
 
 				'menu_icon' => 'dashicons-calendar' // It's use to display event listing icon at admin site. 
 			) )

@@ -138,14 +138,23 @@ class WP_Event_Manager {
 
 		add_action( 'admin_init', array( $this, 'updater' ) );
 		add_action( 'wp_logout', array( $this, 'cleanup_event_posting_cookies' ) );
-		
+		add_action( 'rest_api_init', array( $this, 'rest_init' ) );
 		// Defaults for core actions
 		add_action( 'event_manager_notify_new_user', 'wp_event_manager_notify_new_user', 10, 2 );
 		
 		// Schedule cron events
 		self::check_schedule_crons();
 	}
-
+	/**
+	 * Loads the REST API functionality.
+	 * 
+	 * @since 3.1.8
+	 */
+	public function rest_init() {
+	    
+	    include_once EVENT_MANAGER_PLUGIN_DIR . '/core/wp-event-manager-rest-api.php';
+	    WP_Event_Manager_REST_API::init();
+	}
 	/**
 	 * Called on plugin activation
 	 */
