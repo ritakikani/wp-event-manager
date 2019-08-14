@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Handles functionality related to the REST API.
  *
- * @since 1.33.0
+ * @since 1.3.8
  */
 class WP_Event_Manager_REST_API {
 	/**
