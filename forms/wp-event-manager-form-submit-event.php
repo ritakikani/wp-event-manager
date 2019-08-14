@@ -826,38 +826,45 @@ class WP_Event_Manager_Form_Submit_Event extends WP_Event_Manager_Form {
 				
 			//save event start date according to mysql date format with event start time
 				elseif( $key === 'event_start_date'  ){
-
-					if(isset( $values[ $group_key ][ $key ] )){
+				    $date =  $values[ $group_key ][ $key ];
+				    //if start date is not empty then only convert into database formatted date
+				    if(!empty($date)){
 
         				 //Convert date and time value into DB formatted format and save eg. 1970-01-01
-					    $date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format , $values[ $group_key ][ $key ]);
-						$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $values[ $group_key ][ $key ];
+				        $date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format , $date);
+				        $date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 						update_post_meta( $this->event_id, '_' . $key,$date_dbformatted);
 					}
 					else
-						update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
+					    update_post_meta( $this->event_id, '_' . $key, $date);
 
 				}
 				elseif( $key ==='event_end_date' ){
 						//save event end date according to mysql date format with event end time
-						if(isset( $values[ $group_key ][ $key ] )){
-							
-							     //Convert date and time value into DB formatted format and save eg. 1970-01-01
-						    $date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format , $values[ $group_key ][ $key ]);
-						    $date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $values[ $group_key ][ $key ];
+				        $date =  $values[ $group_key ][ $key ];
+				        //if end date is not empty then only convert into database formatted date
+				        if(!empty($date)){
+							//Convert date and time value into DB formatted format and save eg. 1970-01-01
+				            $date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format , $date);
+				            $date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
 
 							update_post_meta( $this->event_id, '_' . $key, $date_dbformatted );
 						}
 						else
-							update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
+						    update_post_meta( $this->event_id, '_' . $key, $date);
 				}
 				elseif ( $field['type'] == 'date' ) {
-					$date = $values[ $group_key ][ $key ];					
-					//Convert date and time value into DB formatted format and save eg. 1970-01-01
-					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format  , $date );
-					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
-					update_post_meta( $this->event_id, '_' . $key, $date_dbformatted );
+					$date = $values[ $group_key ][ $key ];	
+					//if date is not empty then only convert into database formatted date
+					if(!empty($date)) {	
+    					//Convert date and time value into DB formatted format and save eg. 1970-01-01
+    					$date_dbformatted = WP_Event_Manager_Date_Time::date_parse_from_format($php_date_format  , $date );
+    					$date_dbformatted = !empty($date_dbformatted) ? $date_dbformatted : $date;
+    					update_post_meta( $this->event_id, '_' . $key, $date_dbformatted );
+					}else {
+					    update_post_meta( $this->event_id, '_' . $key, '' );
+					}
 				}
 				 else { 
 					update_post_meta( $this->event_id, '_' . $key, $values[ $group_key ][ $key ] );
