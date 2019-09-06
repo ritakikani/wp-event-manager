@@ -17,13 +17,13 @@ add_action(
     'vcv:api',
     function ($api) {
         $elementsToRegister = [
-            'submitEventForm',
-            'eventListing',
-            'eventSummary',
-            'singleEventListing',
-            'eventRegistration',
-            'eventDashboard',
-            'pastEventListing'     
+            'submit-event-form',
+            'event-listing',
+            'event-summary',
+            'single-event-listing',
+            'event-registration',
+            'event-dashboard',
+            'past-event-listing'    
         ];
         $pluginBaseUrl = rtrim(plugins_url(basename(EVENT_MANAGER_PLUGIN_DIR)), '\\/');
         /** @var \VisualComposer\Modules\Elements\ApiController $elementsApi */

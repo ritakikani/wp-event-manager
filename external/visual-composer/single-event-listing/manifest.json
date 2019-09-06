@@ -1,0 +1,22 @@
+{
+  "elements": {
+    "single-event-listing": {
+      "settings": {
+        "name": "Single Event Listing",
+        "metaThumbnailUrl": "[publicPath]/single-event-listing.jpg",
+        "metaPreviewUrl": "[publicPath]/songle-event-preview.png",
+        "metaDescription": "It will show the detail of specific event"
+      },
+      "phpFiles": [
+        "event-id-autocomplete-controller.php"
+      ]
+    }
+  },
+  "categories": {
+    "Misc": {
+      "elements": [
+        "single-event-listing"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "elements": {
+    "event-listing": {
+      "settings": {
+        "name": "Event Listing",
+        "metaThumbnailUrl": "[publicPath]/event-listing.jpg",
+        "metaPreviewUrl": "[publicPath]/event-listing-preview.png",
+        "metaDescription": "Event Listing"
+      },
+      "phpFiles": [
+        "event-listing-controller.php"
+      ]
+    }
+  },
+  "categories": {
+    "Misc": {
+      "elements": [
+        "event-listing"
+      ]
+    }
+  }
+}
