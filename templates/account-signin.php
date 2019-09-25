@@ -12,7 +12,9 @@
 	<div class="field account-sign-in wpem-alert wpem-alert-info">
 		<a href="<?php echo !empty(get_option('event_manager_login_page_url')) ? apply_filters( 'submit_event_form_login_url', get_option('event_manager_login_page_url') ) : 	home_url().'/wp-login.php'; ?>"><?php _e( 'Sign in', 'wp-event-manager' ); ?></a>			
 			<?php if ( $registration_enabled ) : ?>				
-			<?php printf( __( 'If you don&rsquo;t have an account with us, just enter your email address and create a new one.  You will receive your password shortly in your email.', 'wp-event-manager' ), $account_required ? '' : __( 'optionally', 'wp-event-manager' ) . ' ' ); ?>			
+			<?php printf( __( 'If you don&rsquo;t have an account with us, just enter your email address and create a new one.', 'wp-event-manager'));
+				if(get_option( 'event_manager_use_standard_password_setup_email' ) || $generate_username_from_email)
+					printf(__('You will receive your password shortly in your email.', 'wp-event-manager' ), $account_required ? '' : __( 'optionally', 'wp-event-manager' ) . ' ' ); ?>						
 			<?php elseif ( $account_required ) : ?>				
 			<?php echo apply_filters( 'submit_event_form_login_required_message',  __(' You must sign in to create a new listing.', 'wp-event-manager' ) ); ?>
 			<?php endif; ?>		
