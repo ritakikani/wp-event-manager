@@ -57,17 +57,19 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 					<div class="wpem-col-xs-12 wpem-col-md-4 wpem-single-event-short-info">
 						<div class="wpem-event-date">
 							<div class="wpem-event-date-type">
-        					<?php if (isset($start_date) && isset($end_date)) :  ?>
+        					<?php if (isset($start_date) && !empty($start_date)) :  ?>
                           <div class="wpem-from-date">
 									<div class="wpem-date"><?php echo date_i18n('d',strtotime($start_date));?></div>
 									<div class="wpem-month"><?php echo date_i18n('M',strtotime($start_date));?></div>
 								</div>
+								<?php if (isset($end_date) && !empty($end_date)):  ?>
 								<div class="wpem-to-date">
 									<div class="wpem-date-separator">-</div>
 									<div class="wpem-date"><?php echo date_i18n('d',strtotime($end_date));?></div>
 									<div class="wpem-month"><?php echo date_i18n('M',strtotime($end_date));?></div>
 								</div>
-        					<?php endif;?>
+        					<?php endif;
+        					endif;?>
                         </div>
 						</div>
 						<div class="wpem-event-details">
@@ -131,10 +133,16 @@ wp_enqueue_style( 'wp-event-manager-slick-style');
 							
 							<div class="wpem-single-event-sidebar-info">
 									
-					<?php do_action('single_event_sidebar_start');?>
-					<div class="clearfix">&nbsp;</div>
-				    <h3 class="wpem-heading-text"><?php _e('Date And Time','wp-event-manager')?></h3>
-            <div class="wpem-event-date-time"><span class="wpem-event-date-time-text"><?php display_event_start_date();?>,<?php display_event_start_time();?> - <?php display_event_end_date();?>, <?php display_event_end_time();?></span></div>
+					<?php do_action('single_event_sidebar_start');?> 
+					<?php if(get_event_start_date()):?>
+						<div class="clearfix">&nbsp;</div>
+				    	<h3 class="wpem-heading-text"><?php _e('Date And Time','wp-event-manager')?></h3>
+            			<div class="wpem-event-date-time">
+							<span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php if(get_event_start_time()){ display_date_time_separator(); ?> <?php display_event_start_time(); }?></span>
+							<br/>
+							<span class="wpem-event-date-time-text"><?php display_event_end_date();?> <?php if(get_event_end_time()){ display_date_time_separator() ?> <?php display_event_end_time(); } ?></span>
+						</div>
+					<?php endif; ?>
                   <div class="clearfix">&nbsp;</div>
 				  <h3 class="wpem-heading-text"><?php _e('Location','wp-event-manager');?></h3>
                   <?php display_event_location();?> 

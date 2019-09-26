@@ -21,7 +21,8 @@ if(is_array($event_type) && isset($event_type[0]))
         <div class="wpem-event-banner-img" style="background-image: url('<?php echo $banner  ?>')">
 
           <!-- Hide in list View // Show in Box View -->
-          <?php do_action('event_already_registered_title');?>     
+          <?php do_action('event_already_registered_title');?>    
+          <?php if(isset($start_date) && !empty($start_date)) : ?> 
           <div class="wpem-event-date">
             <div class="wpem-event-date-type">
               <div class="wpem-from-date">
@@ -31,11 +32,13 @@ if(is_array($event_type) && isset($event_type[0]))
 
             </div>
           </div>
+          <?php endif; ?>
           <!-- Hide in list View // Show in Box View -->
         </div>
       </div>
 
       <div class="wpem-event-infomation">
+      	<?php if(isset($start_date) && !empty($start_date)) : ?>
           <div class="wpem-event-date">
             <div class="wpem-event-date-type">
 
@@ -43,6 +46,7 @@ if(is_array($event_type) && isset($event_type[0]))
                 <div class="wpem-date"><?php echo date_i18n( 'd', strtotime($start_date) ); ?></div>
                 <div class="wpem-month"><?php echo date_i18n( 'M', strtotime($start_date) ); ?></div>
               </div>
+              <?php if (isset($end_date) && !empty($end_date)):  ?>
               <div class="wpem-to-date">
                 <div class="wpem-date-separator">-</div>
                 <div class="wpem-date"><?php echo date_i18n( 'd', strtotime($end_date) ); ?></div>
@@ -51,11 +55,28 @@ if(is_array($event_type) && isset($event_type[0]))
 
             </div>
           </div>
-
+		<?php endif;
+		endif;?>
           <div class="wpem-event-details">
             <div class="wpem-event-title"><h3 class="wpem-heading-text"><?php echo esc_html( get_the_title() ); ?></h3></div>
-
-            <div class="wpem-event-date-time"><span class="wpem-event-date-time-text"><?php display_event_start_date();?> <?php display_event_start_time();?> - <?php display_event_end_date();?> <?php display_event_end_time();?></span></div>
+ 			<?php if(get_event_start_date()) :?>
+            	<div class="wpem-event-date-time"><span class="wpem-event-date-time-text">
+            	<?php display_event_start_date(); 
+                      if(get_event_start_time()):
+                        display_date_time_separator(); 
+                        display_event_start_time(); 
+                      endif;
+                      if(get_event_end_date()):
+                        echo '-';
+                        display_event_end_date();
+                        if(display_event_end_time()):
+                          display_date_time_separator(); 
+                          display_event_end_time(); 
+                        endif; 
+                      endif;
+                 ?>          	
+            	</span></div>
+             <?php endif; ?>
             <div class="wpem-event-location"><span class="wpem-event-location-text"><?php if(get_event_location()=='Anywhere' || get_event_location() == ''): echo __('Online Event','wp-event-manager'); else:  display_event_location(false); endif; ?></span></div>
             
             <?php if( get_option( 'event_manager_enable_event_types' ) && get_event_type() ) { ?>
